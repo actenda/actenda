@@ -7,7 +7,7 @@ import Dropzone from 'react-dropzone';
 import jq from 'cheerio'
 
 import LaddaButton, { S } from 'react-ladda';
-import Button from '@material/react-button';
+import Button from '@material/react-button/dist';
 
 
 const location = 'Parc des Tuileries - CS 80117, 69578 Limonest';
