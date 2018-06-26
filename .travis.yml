@@ -3,6 +3,7 @@ node_js:
   - "10"
 before_install:
   - npm install -g parcel-bundler
+  - chmod +x build.sh
 after_success:
   - ./push.sh
 script:
