@@ -23,13 +23,6 @@ export default class App extends React.Component {
     super();
     this.state = {};
   }
-  onLoginSuccess(res) {
-    console.log('success', res);
-  }
-
-  onLoginFailure(res) {
-    console.log('failure', res);
-  }
 
   onFileLoad(e) {
     const contents = e.target.result;
@@ -85,28 +78,25 @@ export default class App extends React.Component {
   }
 
   initClient() {
-    console.log('initClient');
     gapi.client.init({
       apiKey: API_KEY,
       clientId: CLIENT_ID,
       discoveryDocs: DISCOVERY_DOCS,
       scope: SCOPES
-    }).then(() => {
-      /*gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });*/
+    }).then(() => 
+        gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus.bind(this));
+
+        // Handle the initial sign-in state.
+        this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
     });
   }
-
+  
+  updateSigninStatus (isSignedIn) {
+    this.setState({isSignedIn});
+  }
+  
   loadGAPI() {
-    console.log('loadGAPI');
-    gapi.load('client:auth2', this.initClient);
+    gapi.load('client:auth2', this.initClient.bind(this));
   }
 
   componentDidMount() {
@@ -144,25 +134,24 @@ export default class App extends React.Component {
       this.setState({ loading: false })
     })
 
-
   }
 
   signIn () {
     gapi.auth2.getAuthInstance().signIn();
   }
 
+  logout () {
+    gapi.auth2.getAuthInstance().signOut();
+  }
+
   render() {
-    const { loading, progress } = this.state;
+    const { loading, progress, isSignedIn } = this.state;
     return <div className="main">
       <div className="mainContainer">
         <div className="login-button">
-        <Button class="mdc-button" onClick={this.signIn}>
-          Button
+        <Button class="mdc-button" onClick={isSignedIn ? this.logout : this.signIn} raised>
+          {isSignedIn ? "Déconnexion" : "Connexion"]
         </Button>
-          {/*<div className="signin" onClick={this.signIn}>Connexion avec Google Agenda</div><GoogleLogin googleClientId={CLIENT_ID}
-            buttonText="Login"
-            onSuccess={this.onLoginSuccess}
-            onFailure={this.onLoginFailure} />*/}
         </div>
         <div className="dropzone">
           <div className="events">
