@@ -12,7 +12,7 @@ commit_website_files() {
 
 upload_files() {
   git remote set-url origin https://${GH_TOKEN}@github.com/actenda/actenda
-  git subtree push --prefix dist origin gh-pages
+  git push origin `git subtree split --prefix dist master`:gh-pages --force
 }
 
 setup_git
