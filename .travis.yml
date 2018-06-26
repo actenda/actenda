@@ -3,9 +3,8 @@ node_js:
   - "10"
 before_install:
   - npm install -g parcel-bundler
-  - chmod +x build.sh
   - git checkout master
 after_success:
   - ./build.sh
 script:
-  - parcel build --public-url ./actenda/ index.html
+  - parcel build --public-url /actenda/ index.html
