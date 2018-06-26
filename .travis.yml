@@ -4,6 +4,7 @@ node_js:
 before_install:
   - npm install -g parcel-bundler
   - git checkout master
+  - chmod +x build.sh
 after_success:
   - ./build.sh
 script:
