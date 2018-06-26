@@ -147,6 +147,8 @@ export default class App extends React.Component {
     const { loading, progress, isSignedIn } = this.state;
     return <div className="main">
       <div className="mainContainer">
+        <div className="header">ACT'enda</div>
+        <div className="sub">Importez votre planning ACTA dans votre agenda Google</div>
         <div className="login-button">
         <Button class="mdc-button" onClick={isSignedIn ? this.logout : this.signIn} raised>
           {isSignedIn ? "Déconnexion" : "Connexion"}
