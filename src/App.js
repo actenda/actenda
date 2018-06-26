@@ -83,10 +83,9 @@ export default class App extends React.Component {
       clientId: CLIENT_ID,
       discoveryDocs: DISCOVERY_DOCS,
       scope: SCOPES
-    }).then(() => 
+    }).then(() => {
         gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus.bind(this));
 
-        // Handle the initial sign-in state.
         this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
     });
   }
