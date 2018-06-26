@@ -5,6 +5,6 @@ before_install:
   - npm install -g parcel-bundler
   - chmod +x build.sh
 after_success:
-  - ./push.sh
+  - ./build.sh
 script:
   - parcel build index.html
