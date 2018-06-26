@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, p {
+  font-family: Lato;
+}
+
+.main {
+  display: grid;
+  height: 100vh;
+  margin: 0;
+  place-items: center center;
+}
+
+.dropzone {
+  margin-top: 2em;
+}
+
+.dz-ph {
+  display: grid;
+  height: 200px;
+  width: 200px;
+  margin: 0;
+  place-items: center center;
+  font-family: 'Roboto', sans-serif;
+  color: #88a;
+}
+
+.events {
+  max-height: 200px;
+  width: 400px;
+  overflow-y: auto;
+}
+
+.event {
+  margin: 0.5em;
+}
+.event span {
+  margin: 0.4em;
+}
+.signin {
+  cursor: pointer;
+  padding: 0.3em;
+  border-radius: 2px;
+  background-color: #55a;
+}
+
