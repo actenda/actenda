@@ -7,6 +7,7 @@ import Dropzone from 'react-dropzone';
 import jq from 'cheerio'
 
 import LaddaButton, { S } from 'react-ladda';
+import Button from '@material/react-button';
 
 
 const location = 'Parc des Tuileries - CS 80117, 69578 Limonest';
@@ -155,11 +156,10 @@ export default class App extends React.Component {
     return <div className="main">
       <div className="mainContainer">
         <div className="login-button">
-        <button class="mdc-button">
+        <Button class="mdc-button" onClick={this.signIn}>
           Button
-        </button>
-          <div className="signin" onClick={this.signIn}>Connexion avec Google Agenda</div>
-          {/*<GoogleLogin googleClientId={CLIENT_ID}
+        </Button>
+          {/*<div className="signin" onClick={this.signIn}>Connexion avec Google Agenda</div><GoogleLogin googleClientId={CLIENT_ID}
             buttonText="Login"
             onSuccess={this.onLoginSuccess}
             onFailure={this.onLoginFailure} />*/}
