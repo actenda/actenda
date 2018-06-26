@@ -149,7 +149,7 @@ export default class App extends React.Component {
       <div className="mainContainer">
         <div className="login-button">
         <Button class="mdc-button" onClick={isSignedIn ? this.logout : this.signIn} raised>
-          {isSignedIn ? "Déconnexion" : "Connexion"]
+          {isSignedIn ? "Déconnexion" : "Connexion"}
         </Button>
         </div>
         <div className="dropzone">
