@@ -168,6 +168,7 @@ export default class App extends React.Component {
           <Dropzone onDrop={this.onFileDrop.bind(this)}> <div className="dz-ph">Déposer le fichier ici</div> </Dropzone>
         </div>
       </div>
+      <div className="credits">R"alisé par Vincent</div>
     </div>
   }
 }
