@@ -165,7 +165,7 @@ export default class App extends React.Component {
             }) : null}
           </div>
           {this.state.events ? 
-            <Button class="mdc-button" style={{position: 'relative'}} onClick={this.onImport.bind(this)} disabled={!isSignedIn}>
+            <Button raised class="mdc-button" style={{position: 'relative'}} onClick={this.onImport.bind(this)} disabled={!isSignedIn}>
                 <div style={{
                             position: 'absolute',
                             width: progress * 100 + '%',
