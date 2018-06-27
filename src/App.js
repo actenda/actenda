@@ -164,8 +164,20 @@ export default class App extends React.Component {
               </div>
             }) : null}
           </div>
-          {this.state.events ? <LaddaButton data-size={S} loading={loading} progress={progress} onClick={this.onImport.bind(this)} >Importer</LaddaButton> : null}
-          <Dropzone onDrop={this.onFileDrop.bind(this)}> <div className="dz-ph">Déposer le fichier ici</div> </Dropzone>
+          {this.state.events ? 
+            <Button class="mdc-button" style={{position: 'relative'}} onClick={this.onImport.bind(this)} disabled={!isSignedIn}>
+                <div style={{
+                            position: 'absolute',
+                            width: progress * 100 + '%',
+                            height: '100%',
+                            left: 0,
+                            top: 0,
+                            transition: 'all 0.1s ease',
+                            backgroundColor: 'rgba(255,255,255,0.3)'
+                           }}></div>
+                Importer
+              </Button>
+              : <Dropzone onDrop={this.onFileDrop.bind(this)}> <div className="dz-ph">Déposer le fichier ici</div> </Dropzone> }
         </div>
       </div>
       <div className="credits">Réalisé par Vincent</div>
