@@ -172,7 +172,8 @@ export default class App extends React.Component {
         <div className="dropzone">
           <div className="events">
             {this.state.events ? this.state.events.map((event) => {
-              return <div className={dups.find((existing) => existing.start.dateTime.split('T')[0] === event.start.dateTime.split('T')[0]? "duplicate event" : "event" }>
+             const duplicated = dups.find((existing) => existing.start.dateTime.split('T')[0] === event.start.dateTime.split('T')[0]);
+              return <div className={duplicated ? "duplicate event" : "event" }>
                 <span className="name">{event.summary}</span>
                 <span className="date">{new Date(event.start.dateTime).toLocaleDateString()}</span>
                 <span className="start">{new Date(event.start.dateTime).toLocaleTimeString().slice(0, 5)} - {new Date(event.end.dateTime).toLocaleTimeString().slice(0, 5)}</span>
