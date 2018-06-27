@@ -13,7 +13,7 @@ const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet'
 const CLIENT_ID = '173021400507-lmgao5drfmu35412d3m0g9mb4865h14g.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyDOsmQW75JYK3AmtKl-UjapDAvALUGY_ys';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-const SCOPES = ["https://www.googleapis.com/auth/calendar", " https://www.googleapis.com/auth/calendar.readonly"];
+const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly";
 
 
 export default class App extends React.Component {
