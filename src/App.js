@@ -145,7 +145,7 @@ export default class App extends React.Component {
           setTimeout(resolve, 100);
           // resolve();
           //request.execute((event) => {
-          //  this.setState({ progress: index / length })
+          this.setState({ progress: index / length })
           //  resolve();
 //});
         })
