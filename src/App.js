@@ -120,11 +120,11 @@ export default class App extends React.Component {
             'calendarId': 'primary',
             'resource': event
           });
-
-          request.execute((event) => {
-            this.setState({ progress: index / length })
-            resolve();
-          });
+          resolve();
+          //request.execute((event) => {
+          //  this.setState({ progress: index / length })
+          //  resolve();
+//});
         })
       }
     });
@@ -150,7 +150,7 @@ export default class App extends React.Component {
         <div className="header">ACT'enda</div>
         <div className="sub">Importez votre planning ACTA dans votre agenda Google</div>
         <div className="login-button">
-        <Button class="mdc-button" onClick={isSignedIn ? this.logout : this.signIn} raised>
+        <Button class="mdc-button" onClick={isSignedIn ? this.logout : this.signIn} raised={!isSignedIn}>
           {isSignedIn ? "Déconnexion" : "Connexion"}
         </Button>
         </div>
