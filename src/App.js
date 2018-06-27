@@ -65,8 +65,9 @@ export default class App extends React.Component {
           ],
         },
       }
-    })
-    this.setState({ events });
+    });
+    
+    this.setState({ events }, this.fetchExistingEvents.bind(this));
   }
 
   onFileDrop([file]) {
@@ -90,9 +91,8 @@ export default class App extends React.Component {
   
   updateSigninStatus (isSignedIn) {
     this.setState({isSignedIn});
-    if (isSignedIn) {
-       this.fetchExistingEvents();
-    } else {
+    
+    if (!this.fetchExistingEvents()) {
       this.setState({dups: []});
     }
   }
@@ -110,18 +110,22 @@ export default class App extends React.Component {
   }
   
   fetchExistingEvents () {
-    const { events } = this.state;
+    const { events, isSignedIn } = this.state;
+    
+    if ((!events || !events.length) && !isSignedIn) return false;
+    
     const { start } = events[0];
     const { end } = events[events.length - 1];
     
     console.log('fetching events', start, end);
     
     const req = gapi.client.calendar.events.list({calendarId: 'primary', showDeleted: false, timeMin: start.dateTime, timeMax: start.dateTime});
-    
-    
+
     req.execute(({result}) => {
       this.setState({dups: result.items});
     });
+    
+    return true;
   }
 
   onImport() {
