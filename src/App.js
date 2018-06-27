@@ -1,12 +1,10 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 
-import GoogleLogin from 'react-google-login-button';
 import Dropzone from 'react-dropzone';
 
 import jq from 'cheerio'
 
-import LaddaButton, { S } from 'react-ladda';
 import Button from '@material/react-button/dist';
 
 
@@ -87,6 +85,7 @@ export default class App extends React.Component {
         gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus.bind(this));
 
         this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        this.fetchExistingEvents();
     });
   }
   
@@ -105,6 +104,21 @@ export default class App extends React.Component {
     document.getElementsByTagName('head')[0].appendChild(meta);
     this.loadGAPI();
   }
+  
+  fetchExistingEvents () {
+    const { events } = this.state;
+    const { start } = events[0];
+    const { end } = events[events.length - 1];
+    
+    console.log('fetching events', start, end);
+    
+    const req = gapi.client.calendar.events.list({calendarId: 'primary', showDeleted: false, timeMin: start.dateTime, timeMax: start.dateTime});
+    
+    
+    req.execute(({result}) => {
+      this.setState({dups: result.items});
+    });
+  }
 
   onImport() {
     if (this.state.loading) {
@@ -120,7 +134,8 @@ export default class App extends React.Component {
             'calendarId': 'primary',
             'resource': event
           });
-          resolve();
+          setTimeout(resolve, 100);
+          // resolve();
           //request.execute((event) => {
           //  this.setState({ progress: index / length })
           //  resolve();
@@ -144,7 +159,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { loading, progress, isSignedIn } = this.state;
+    const { loading, progress, isSignedIn, dups } = this.state;
     return <div className="main">
       <div className="mainContainer">
         <div className="header">ACT'enda</div>
@@ -157,7 +172,7 @@ export default class App extends React.Component {
         <div className="dropzone">
           <div className="events">
             {this.state.events ? this.state.events.map((event) => {
-              return <div className="event">
+              return <div className={dups.find((existing) => existing.start.dateTime.split('T')[0] === event.start.dateTime.split('T')[0]? "duplicate event" : "event" }>
                 <span className="name">{event.summary}</span>
                 <span className="date">{new Date(event.start.dateTime).toLocaleDateString()}</span>
                 <span className="start">{new Date(event.start.dateTime).toLocaleTimeString().slice(0, 5)} - {new Date(event.end.dateTime).toLocaleTimeString().slice(0, 5)}</span>
