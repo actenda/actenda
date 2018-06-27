@@ -19,7 +19,7 @@ const SCOPES = "https://www.googleapis.com/auth/calendar";
 export default class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {dups: []};
   }
 
   onFileLoad(e) {
@@ -85,12 +85,16 @@ export default class App extends React.Component {
         gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus.bind(this));
 
         this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        this.fetchExistingEvents();
     });
   }
   
   updateSigninStatus (isSignedIn) {
     this.setState({isSignedIn});
+    if (isSignedIn) {
+       this.fetchExistingEvents();
+    } else {
+      this.setState({dups: []});
+    }
   }
   
   loadGAPI() {
