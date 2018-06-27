@@ -61,3 +61,56 @@ h1, p {
 .credits {
     color: #3a394a30;
 }
+
+.ladda-button {
+	background-color: rgb(98, 0, 238);
+	border-bottom-color: rgb(255, 255, 255);
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-color: rgb(255, 255, 255);
+	border-left-style: none;
+	border-left-width: 0px;
+	border-right-color: rgb(255, 255, 255);
+	border-right-style: none;
+	border-right-width: 0px;
+	border-top-color: rgb(255, 255, 255);
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	border-top-style: none;
+	border-top-width: 0px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+	box-sizing: border-box;
+	color: rgb(255, 255, 255);
+	display: inline-flex;
+	font-family: Roboto,sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	height: 36px;
+	justify-content: center;
+	letter-spacing: 1.25px;
+	line-height: 18px;
+	min-width: 64px;
+	outline-color: rgb(255, 255, 255);
+	outline-style: none;
+	outline-width: 0px;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	padding-bottom: 0px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 0px;
+	position: relative;
+	text-decoration: none;
+	text-decoration-color: rgb(255, 255, 255);
+	text-decoration-line: none;
+	text-decoration-style: solid;
+	/* text-transform: uppercase; */
+	transition-delay: 0s;
+	transition-duration: 0.28s;
+	transition-propertybox-shadowtransition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	vertical-align: middle;
+  margin: 1em;
+}
