@@ -31,10 +31,13 @@ export default class App extends React.Component {
     const data = [];
 
     $('tr.tblRow').each(function (index, el) {
+      console.log(index, el, $, this);
       const skill = $(this).find('th')[0].children[0].data;
       if (!skill || skill.trim() === '') {
         return;
       }
+      
+      console.log(index, $(this).find('td'));
 
       const [dh] = $(this).find('td');
       const [date, br, img, time, swapableTime] = dh.children;
