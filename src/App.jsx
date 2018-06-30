@@ -119,7 +119,13 @@ export default class App extends React.Component {
     
     console.log('fetching events', start, end);
     
-    const req = gapi.client.calendar.events.list({calendarId: 'primary', showDeleted: false, timeMin: start.dateTime, timeMax: start.dateTime});
+    const req = gapi.client.calendar.events.list({
+      calendarId: 'primary',
+      showDeleted: false,
+      singleEvents: true,
+      timeMin: start.dateTime,
+      timeMax: end.dateTime
+    });
 
     req.execute(({result}) => {
       this.setState({dups: result.items});
