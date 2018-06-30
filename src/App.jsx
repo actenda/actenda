@@ -162,11 +162,12 @@ export default class App extends React.Component {
 
     const queue = this.state.events.map((event, index, { length }) => {
       return () => {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
           var request = window.gapi.client.calendar.events.insert({
             'calendarId': 'primary',
             'resource': event
           });
+          await deleteDups(event);
           setTimeout(resolve, 100);
           // resolve();
           //request.execute((event) => {
