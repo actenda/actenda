@@ -133,13 +133,14 @@ export default class App extends React.Component {
   }
   
   deleteEvent (eventId) {
-    return new Promise((resolve) => {/*
+    return new Promise((resolve) => {
       const req = gapi.client.calendar.events.delete({
         calendarId: 'primary',
         eventId
       });
       
-      req.execute(resolve);*/console.log('delete', eventId);
+      req.execute(resolve);
+      
       
     });
   }
@@ -168,12 +169,11 @@ export default class App extends React.Component {
             'resource': event
           });
           await this.deleteDups(event);
-          setTimeout(resolve, 100);
-          // resolve();
-          //request.execute((event) => {
-          this.setState({ progress: index / length })
-          //  resolve();
-//});
+          
+          request.execute((event) => {
+            this.setState({ progress: index / length })
+            resolve();
+          });
         })
       }
     });
