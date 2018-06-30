@@ -38,6 +38,9 @@ h1, p {
 
 .event {
   margin: 0.5em;
+  &.duplicate {
+    color: #555;
+  }
 }
 .event span {
   margin: 0.4em;
