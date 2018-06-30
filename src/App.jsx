@@ -117,8 +117,6 @@ export default class App extends React.Component {
     const { start } = events[0];
     const { end } = events[events.length - 1];
     
-    console.log('fetching events', start, end);
-    
     const req = gapi.client.calendar.events.list({
       calendarId: 'primary',
       showDeleted: false,
@@ -132,6 +130,27 @@ export default class App extends React.Component {
     });
     
     return true;
+  }
+  
+  deleteEvent (eventId) {
+    return new Promise((resolve) => {/*
+      const req = gapi.client.calendar.events.delete({
+        calendarId: 'primary',
+        eventId
+      });
+      
+      req.execute(resolve);*/console.log('delete', eventId);
+      
+    });
+  }
+  
+  deleteDups (event) {
+    const { events, dups } = this.state;
+    
+    return dups.filter(this.duplicatePredicate(event))
+      .reduce((acc, dup) => {
+        return acc.then(() => this.deleteEvent(dup.id));
+      }, Promise.resolve());
   }
 
   onImport() {
@@ -171,6 +190,10 @@ export default class App extends React.Component {
   logout () {
     gapi.auth2.getAuthInstance().signOut();
   }
+  
+  duplicatePredicate (event) {
+    return (existing) => existing.start.dateTime.split('T')[0] === event.start.dateTime.split('T')[0]
+  }
 
   render() {
     const { loading, progress, isSignedIn, dups } = this.state;
@@ -186,7 +209,7 @@ export default class App extends React.Component {
         <div className="dropzone">
           <div className="events">
             {this.state.events ? this.state.events.map((event) => {
-             const duplicated = dups.find((existing) => existing.start.dateTime.split('T')[0] === event.start.dateTime.split('T')[0]);
+             const duplicated = dups.find(this.duplicatePredicate(event));
               return <div className={duplicated ? "duplicate event" : "event" }>
                 <span className="name">{event.summary}</span>
                 <span className="date">{new Date(event.start.dateTime).toLocaleDateString()}</span>
