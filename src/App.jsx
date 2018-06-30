@@ -179,7 +179,7 @@ export default class App extends React.Component {
     });
 
     queue.reduce((acc, fn) => acc.then(() => fn()), Promise.resolve()).then(() => {
-      this.setState({ loading: false })
+      this.setState({ loading: false, progress: 0 })
     })
 
   }
