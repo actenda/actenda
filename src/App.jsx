@@ -167,7 +167,7 @@ export default class App extends React.Component {
             'calendarId': 'primary',
             'resource': event
           });
-          await deleteDups(event);
+          await this.deleteDups(event);
           setTimeout(resolve, 100);
           // resolve();
           //request.execute((event) => {
