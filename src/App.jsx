@@ -61,7 +61,8 @@ export default class App extends React.Component {
         'reminders': {
           'useDefault': false,
           'overrides': [
-            { 'method': 'popup', 'minutes': 20 },
+            { 'method': 'popup', 'minutes': 75 },
+            { 'method': 'popup', 'minutes': 60*11 }
           ],
         },
       }
